@@ -1,0 +1,102 @@
+.left-message {
+    width: auto;
+    text-align: left;
+    margin-bottom: 2px;
+    float: none;
+}
+
+.right-message {
+    width: auto;
+    text-align: -webkit-right;
+    margin-bottom: 2px;
+    float: none;
+    border-radius: 0;
+}
+
+.show-more-loading {
+    height: 0px;
+    opacity: 0;
+    margin-bottom: 30px;
+    word-break: break-all;
+    text-align: center;
+    transition: height .4s;
+}
+
+.left-message > div {
+    position: relative;
+    display: inline-block;
+    min-width: 150px;
+    min-height: 48px;
+    width: auto;
+    opacity: 0.7;
+    line-height: 10px;
+    color: #FFFFFF;
+    text-align: left;
+    padding: 15px 15px 10px 15px;
+    left: 8px;
+    background: #4484C8;
+    background: -webkit-linear-gradient(180deg, #4484D6 0%, #4484C8 45%);
+    background: -moz-linear-gradient(180deg, #4484D6 0%, #4484C8 45%);
+    background: -ms-linear-gradient(180deg, #4484D6 0%, #4484C8 45%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 1px rgba(163, 163, 163, 0.5);
+}
+
+.right-message > div {
+    position: relative;
+    display: inline-block;
+    min-width: 150px;
+    min-height: 48px;
+    width: auto;
+    opacity: 0.7;
+    line-height: 10px;
+    color: #FFFFFF;
+    text-align: left;
+    padding: 15px 15px 10px 15px;
+    right: 8px;
+    background: #00706C;
+    background: -webkit-linear-gradient(180deg, #007074 0%, #00706C 45%);
+    background: -moz-linear-gradient(180deg, #007074 0%, #00706C 45%);
+    background: -ms-linear-gradient(180deg, #007074 0%, #00706C 45%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 1px rgba(163, 163, 163, 0.46);
+}
+
+.left-message > div:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 8px 8px 8px 0;
+    border-color: transparent #4483d6;
+    display: block;
+    width: 0;
+    z-index: 1;
+    left: -8px;
+    top: 10px;
+}
+
+.right-message > div:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 8px 0 8px 8px;
+    border-color: transparent #007074;
+    display: block;
+    width: 0;
+    z-index: 1;
+    right: -8px;
+    top: 10px;
+}
+
+.scrollbar {
+    height: 350px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    border: 1px solid #ccc;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-right: 0;
+    margin-bottom: 10px;
+    padding: 5px 5px;
+    background: url("../../../static/back.png");
+}
