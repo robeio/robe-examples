@@ -32,202 +32,75 @@ export default class Header extends ShallowComponent {
 
     render():Object {
         return (
-            < Col
-        className = "robe-navbar" >
-            < div
-        className = "robe-navbar-content" >
-            < Col
-        className = "pull-left" >
-            < Button
-        onClick = {this.__onToggle
-    }
-        style = {
-        {
-            margin:4, padding
-        :
-            10, display
-        :
-            this.props.toggled ? "none" : "inherit"
-        }
-    }
-        className = "navbar-toggle pull-left robe-navbar-button" >
-            < span
-        className = "icon-bar"
-        style = {
-        {
-            background:"#173646", height
-        :
-            3
-        }
-    }/>
-    <
-        span
-        className = "icon-bar"
-        style = {
-        {
-            background:"#173646", height
-        :
-            3
-        }
-    }/>
-    <
-        span
-        className = "icon-bar"
-        style = {
-        {
-            background:"#173646", height
-        :
-            3
-        }
-    }/>
-    </
-        Button >
-        < Button
-        onClick = {this.__onToggle
-    }
-        style = {
-        {
-            margin:4.5, padding
-        :
-            5, display
-        :
-            this.props.matches && this.props.toggled ? "inherit" : "none"
-        }
-    }
-        className = "navbar-toggle pull-left robe-navbar-button" >
-            < FaIcon
-        code = "fa-arrow-left"
-        size = "fa-lg" / >
-            < / Button >
-            < Image
-        src = "./logo.png"
-        className = "pull-left"
-        style = {
-        {
-            marginLeft:5
-        }
-    }
-        circle
-        width = "40" / >
-            < Link
-        to = {window.applicationRootPath
-    }>
-    <
-        Col
-        style = {
-        {
-            display:this.props.matches ? "none" : "inherit"
-        }
-    }>
-        Robe
-        Chat
-        Application < / Col >
-        < / Link >
-        < Link
-        to = {window.applicationRootPath
-    }>
-    <
-        Col
-        style = {
-        {
-            display:this.props.matches ? "inherit" : "none"
-        }
-    }>
-        Robe
-        Chat < / Col >
-        < / Link >
-        < / Col >
-        < Col
-        className = "pull-right" >
-            < Button
-        className = "robe-navbar-button" >
-            < FaIcon
-        code = "fa-user"
-        size = "fa-md" / >
-            < / Button >
-            < Button
-        className = "robe-navbar-button" >
-            < FaIcon
-        code = "fa-comments-o"
-        size = "fa-md" / >
-            < Badge > {this.state.messageCount
-    }</
-        Badge >
-        < / Button >
-        < Button
-        className = "robe-navbar-button" >
-            < FaIcon
-        code = "fa-bell"
-        size = "fa-md" / >
-            < Badge > {this.state.notificationCount
-    }</
-        Badge >
-        < / Button >
-        < Button
-        className = "robe-navbar-button"
-        onClick = {this.__onExit.bind(undefined, "header-exit-icon")
-    }>
-    <
-        FaIcon
-        code = "fa-sign-out"
-        size = "fa-md" / >
-            < / Button >
-            < / Col >
-            < / div >
-            < / Col >
-    )
-        ;
+            <Col className="robe-navbar">
+                <div className="robe-navbar-content">
+                    <Col className="pull-left">
+                        <Button onClick={this.__onToggle}
+                                style={{margin:4,padding:10,display:this.props.toggled?"none":"inherit"}}
+                                className="navbar-toggle pull-left robe-navbar-button">
+                            <span className="icon-bar" style={{background:"#173646",height:3}}/>
+                            <span className="icon-bar" style={{background:"#173646",height:3}}/>
+                            <span className="icon-bar" style={{background:"#173646",height:3}}/>
+                        </Button>
+                        <Button onClick={this.__onToggle}
+                                style={{margin:4.5,padding:5,display:this.props.matches&&this.props.toggled?"inherit":"none"}}
+                                className="navbar-toggle pull-left robe-navbar-button">
+                            <FaIcon code="fa-arrow-left" size="fa-lg"/>
+                        </Button>
+                        <Image src="./logo.png"
+                               className="pull-left"
+                               style={{marginLeft:5}}
+                               circle
+                               width="40"/>
+                        <Link to={window.applicationRootPath}>
+                            <Col style={{display:this.props.matches?"none":"inherit"}}>Robe Chat
+                                Application</Col>
+                        </Link>
+                        <Link to={window.applicationRootPath}>
+                            <Col style={{display:this.props.matches?"inherit":"none"}}>Robe Chat</Col>
+                        </Link>
+                    </Col>
+                    <Col className="pull-right">
+                        <Button
+                            className="robe-navbar-button">
+                            <FaIcon code="fa-user" size="fa-md"/>
+                        </Button>
+                        <Button
+                            className="robe-navbar-button">
+                            <FaIcon code="fa-comments-o" size="fa-md"/>
+                            <Badge>{this.state.messageCount}</Badge>
+                        </Button>
+                        <Button
+                            className="robe-navbar-button">
+                            <FaIcon code="fa-bell" size="fa-md"/>
+                            <Badge>{this.state.notificationCount}</Badge>
+                        </Button>
+                        <Button
+                            className="robe-navbar-button"
+                            onClick={this.__onExit.bind(undefined,"header-exit-icon")}>
+                            <FaIcon code="fa-sign-out" size="fa-md"/>
+                        </Button>
+                    </Col>
+                </div>
+            </Col>
+        );
     }
 
-    __onExit = () =
-> {
-    cookie
-.
-    remove(
+    __onExit = ()=> {
+        cookie.remove('domain');
+        cookie.remove('username');
 
-    'domain'
-)
-    ;
-    cookie
-.
-    remove(
+        this.logoutPost.call(undefined, undefined,
+            function (res) {
+                location.reload();
+            }.bind(this),
+            function (res) {
+                location.reload();
+            }.bind(this));
+    };
 
-    'username'
-)
-    ;
-
-    this
-.
-    logoutPost
-.
-    call(undefined, undefined,
-
-    function (res) {
-        location.reload();
-    }
-
-.
-    bind(
-
-    this
-),
-    function (res) {
-        location.reload();
-    }
-
-.
-    bind(
-
-    this
-))
-    ;
-};
-
-__onToggle = () =
->
-{
-    if (this.props.onToggle)
-        this.props.onToggle();
-}
-;
+    __onToggle = ()=> {
+        if (this.props.onToggle)
+            this.props.onToggle();
+    };
 }

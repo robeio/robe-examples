@@ -17,99 +17,59 @@ export default class Workspace extends ShallowComponent {
     render():Object {
         let toggled = this.state.toggled == false ? 0 : 250;
         return (
-            < div >
-            < Header
-        matches = {this.state.matches
-    }
-        toggled = {this.state.toggled
-    }
-        onToggle = {this.__changeMenu
-    }/>
-    <
-        Col
-        id = "sideMenu"
-        style = {
-        {
-            width:toggled
-        }
-    }
-        className = "side-menu" >
-            < Users / >
-            < / Col >
-            < Col
-        id = "content"
-        className = "content"
-        style = {
-        {
-            height:window.innerHeight - 80, marginLeft
-        :
-            toggled
-        }
-    }
-        onClick = {this.__closeMenu
-    }>
-        {
-            this.props.children
-        }
-    </
-        Col >
-        < / div >
-    )
-        ;
+            <div>
+                <Header
+                    matches={this.state.matches}
+                    toggled={this.state.toggled}
+                    onToggle={this.__changeMenu}/>
+                <Col
+                    id="sideMenu"
+                    style={{width:toggled}}
+                    className="side-menu">
+                    <Users/>
+                </Col>
+                <Col
+                    id="content"
+                    className="content"
+                    style={{ height:window.innerHeight-80,marginLeft:toggled}}
+                    onClick={this.__closeMenu}>
+                    {this.props.children}
+                </Col>
+            </div>
+        );
     }
 
-    __closeMenu = () =
-> {
-    if(
+    __closeMenu = ()=> {
+        if (this.state.matches == true) {
+            this.setState({
+                toggled: false
+            });
+        }
+    };
+    __changeMenu = ()=> {
+        if (this.state.matches == true) {
+            this.setState({
+                toggled: !this.state.toggled
+            });
+        }
+    };
 
-    this
-.
-    state
-.
-    matches
-==
-    true
-) {
-    this
-.
-    setState({
-        toggled: false
-    });
-}
-}
-;
-__changeMenu = () =
->
-{
-    if (this.state.matches == true) {
+    __mediaQueryChanged = (mql)=> {
         this.setState({
-            toggled: !this.state.toggled
+            toggled: !mql.matches,
+            matches: mql.matches
         });
+
+    };
+
+    componentWillMount() {
+        const mql = window.matchMedia("screen and (max-width: 768px)");
+        mql.addListener(this.__mediaQueryChanged);
+        this.setState({matches: mql.matches, toggled: !mql.matches});
+
     }
-}
-;
 
-__mediaQueryChanged = (mql) =
->
-{
-    this.setState({
-        toggled: !mql.matches,
-        matches: mql.matches
-    });
-
-}
-;
-
-componentWillMount()
-{
-    const mql = window.matchMedia("screen and (max-width: 768px)");
-    mql.addListener(this.__mediaQueryChanged);
-    this.setState({matches: mql.matches, toggled: !mql.matches});
-
-}
-
-componentWillUnmount()
-{
-    this.state.mql.removeListener(this.__mediaQueryChanged);
-}
+    componentWillUnmount() {
+        this.state.mql.removeListener(this.__mediaQueryChanged);
+    }
 }
