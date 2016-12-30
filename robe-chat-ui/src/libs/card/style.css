@@ -17,8 +17,13 @@
 }
 
 .card-title {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #b5d3e7;
     padding: 2px 0px;
+}
+
+.card-title h4 {
+    color: #337ab7;
+    font-weight: 700;
 }
 
 .card-content {

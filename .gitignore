@@ -61,5 +61,9 @@ hs_err_pid*
 .DS_Store
 .gitignore
 .idea/
-chat-example/
 robe-examples.iml
+robe-chat-server/src/main/resources/
+robe-chat-server/src/test/
+robe-chat-server/target/
+robe-chat-ui/config/data/upload/
+robe-chat-ui/npm-debug.log

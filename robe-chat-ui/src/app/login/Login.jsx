@@ -109,7 +109,6 @@ class Login extends ShallowComponent {
     }
 
     __loginSuccess(response) {
-        console.log(response)
         var domain = response.domain;
         var params = domain.split(';');
 

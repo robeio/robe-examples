@@ -92,7 +92,10 @@ export default class Users extends ShallowComponent {
             type: "POST"
         });
 
-        request.call(undefined, undefined, undefined);
+        request.call(undefined, undefined,
+            function (res) {
+                this.__readAllUser();
+            }.bind(this));
     }
 
     __onClickUser(item) {
@@ -198,10 +201,11 @@ export default class Users extends ShallowComponent {
         this.__randomColor(100);
         this.myUserGet.call(undefined, undefined,
             function (res) {
-                this.setState({myUser: res})
+                this.setState({myUser: res});
+                this.__readAllUser();
             }.bind(this));
 
-        this.__readAllUser();
+
         EventWebSocketStore.register(this.messagesUniqueRef, "MESSAGE", this.__incomingMessage);
 
     }

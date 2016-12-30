@@ -1,10 +1,4 @@
 # Robe-Chat-UI
-#### Robe Admin UI Website
-
-RRA = Robe-Chat-UI
-
-##### Motivation
-
 
 ##### What's inside
 * [Webpack](https://webpack.github.io/) for all development (server,hotload etc.) and build (package, optimize, etc.) needs.
@@ -15,19 +9,32 @@ RRA = Robe-Chat-UI
 * [Robe-React-UI](http://robeio.github.io/robe-react-ui/) for ui components
 * [React-Bootstrap](https://react-bootstrap.github.io/) for ui components
 
-### Documentation
+##For Server Side
+### robe-chat-server [more...](../robe-chat-server/README.md)
 
+## Documentation
 
 ### Quick Start
 
 #### 1. Get the latest version
-You can start by cloning the latest version of RRU.
+You can start by cloning the latest version of robe-chat-ui.
 
-#### 2. Run `npm install`
+#### 2. Open the `Terminal`
+Go to the location where the project is located
+
+```shell
+$ cd robe-chat-ui
+```
+
+#### 3. Run `npm install`
 This will install both run-time project dependencies and developer tools listed
 in [package.json](./package.json) file.
 
-#### 3. How to start project in Development Mode
+```shell
+$ npm install
+```
+
+#### 4. How to start project in Development Mode
 
 This will start the development server and serve site application.
 
@@ -35,7 +42,7 @@ This will start the development server and serve site application.
 $ npm start
 ```
   
-Open Browser and enter `http://localhost:8080` (default) 
+Open Browser and enter `http://127.0.0.1:8082/robe-chat/ui/` (default) 
 
 ### How to Build for Production
 
