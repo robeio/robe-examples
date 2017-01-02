@@ -36,11 +36,11 @@ export default class Users extends ShallowComponent {
 
     render():Object {
         return (
-            <Card header="Kişiler" style={{width:243,paddingBottom:25}}>
+            <Card header="Users" style={{width:243,paddingBottom:25}}>
                 <TextInput
                     value={this.state.search}
                     name="search"
-                    placeholder="Ara..."
+                    placeholder="Search..."
                     onChange={this.__handleChange}/>
                 {this.__renderUserList()}
             </Card>

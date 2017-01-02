@@ -4,6 +4,7 @@ import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.PATCH;
 import io.robe.admin.hibernate.dao.UserDao;
 import io.robe.admin.hibernate.entity.User;
+import io.robe.admin.websocket.AuthenticatedWebSocket;
 import io.robe.auth.Credentials;
 import io.robe.auth.RobeAuth;
 import io.robe.chat.hibernate.dao.MessageDao;
@@ -13,7 +14,8 @@ import io.robe.common.service.RobeService;
 import io.robe.common.service.search.SearchParam;
 import io.robe.common.service.search.model.SearchModel;
 import io.robe.websocket.Packet;
-import io.robe.websocket.WebSocket;
+import io.robe.websocket.RobeWebSocket;
+import org.eclipse.jetty.websocket.api.Session;
 import org.hibernate.CacheMode;
 import org.hibernate.FlushMode;
 
@@ -30,7 +32,8 @@ import static org.hibernate.CacheMode.GET;
 @Path("messages")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class MessageResource {
+@RobeWebSocket(path = "socket")
+public class MessageResource extends AuthenticatedWebSocket {
 
     @Inject
     private MessageDao messageDao;
@@ -98,9 +101,9 @@ public class MessageResource {
         response.put("owner", owner);
 
         try {
-            WebSocket.sendText(new Packet(Packet.Type.MESSAGE, receiver.getOid(), response));
+            sendText(new Packet(Packet.Type.MESSAGE, receiver.getOid(), response));
         } catch (IOException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 
         return message;
@@ -189,6 +192,12 @@ public class MessageResource {
     }
 
 
+    /**
+     * Return unread {@link Message} count.
+     *
+     * @param credentials injected by {@link RobeAuth} annotation for authentication.
+     * @return unread {@link Message} count.
+     */
     @RobeService(group = "Message", description = "Return unread Message count.")
     @GET
     @Path("unreadcount")
@@ -197,6 +206,12 @@ public class MessageResource {
         return messageDao.unreadCountByReceiverId(credentials.getUserId());
     }
 
+    /**
+     * Return all {@link User}s as a collection with.
+     *
+     * @param credentials injected by {@link RobeAuth} annotation for authentication.
+     * @return all {@link User}s as a collection with.
+     */
     @RobeService(group = "Message", description = "Return Message resource and matches with the given id.")
     @Path("users")
     @GET
@@ -214,6 +229,13 @@ public class MessageResource {
         return list;
     }
 
+    /**
+     * Return all {@link Message}s as a collection with for single {@link User}.
+     *
+     * @param credentials injected by {@link RobeAuth} annotation for authentication.
+     * @param userOid     This is the oid of {@link User}
+     * @return all {@link Message}s as a collection with for single {@link User}.
+     */
     @RobeService(group = "Message", description = "Return Message resource and matches with the given id.")
     @Path("users/{userOid}")
     @GET
@@ -228,7 +250,13 @@ public class MessageResource {
         }
     }
 
-
+    /**
+     * Return unread {@link Message}s as a collection with.
+     *
+     * @param credentials injected by {@link RobeAuth} annotation for authentication.
+     * @param userOid     This is the oid of {@link User}
+     * @return unread {@link Message}s as a collection with.
+     */
     @RobeService(group = "Message", description = "Return Message resource and matches with the given id.")
     @Path("update/users/{userOid}")
     @POST
@@ -243,4 +271,23 @@ public class MessageResource {
         return messages;
     }
 
+    @Override
+    public void onMessage(Session session, String s) {
+
+    }
+
+    @Override
+    public void onMessage(Session session, byte[] bytes) {
+
+    }
+
+    @Override
+    public void onClose(Session session, int i, String s) {
+
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+
+    }
 }
