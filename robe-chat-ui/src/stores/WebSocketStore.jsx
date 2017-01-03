@@ -1,9 +1,9 @@
-import WebSocket from "robe-react-commons/lib/websocket/WebSocketStore";
+import BaseWebSocketStore from "robe-react-commons/lib/websocket/WebSocketStore";
 
-class WebSocketStore extends WebSocket {
+class WebSocketStore extends BaseWebSocketStore {
     constructor() {
         super({
-            url: "ws://192.168.1.72:8082/robe-chat/socket"
+            url: "ws://127.0.0.1:8082/robe-chat/socket"
         });
     }
 
