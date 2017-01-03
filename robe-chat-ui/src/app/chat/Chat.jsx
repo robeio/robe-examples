@@ -1,13 +1,13 @@
 import React from "react";
 import ShallowComponent from "robe-react-commons/lib/components/ShallowComponent";
 import AjaxRequest from "robe-react-commons/lib/connections/AjaxRequest";
-import EventWebSocketStore from "libs/stores/EventWebSocketStore";
+import WebSocketStore from "stores/WebSocketStore";
 import TextInput from "robe-react-ui/lib/inputs/TextInput";
 import FaIcon from "robe-react-ui/lib/faicon/FaIcon";
 import InputGroup from "react-bootstrap/lib/InputGroup";
 import Button from "react-bootstrap/lib/Button";
 import Collapse from "react-bootstrap/lib/Collapse";
-import Card from "libs/card/Card";
+import Card from "app/card/Card";
 import ReactDOM from "react-dom";
 import "./style.css";
 import moment from "moment";
@@ -266,11 +266,11 @@ export default class Chat extends ShallowComponent {
                 window.location.hash = "#/"
             }.bind(this));
 
-        EventWebSocketStore.register(this.messagesUniqueRef, "MESSAGE", this.__incomingMessage);
+        WebSocketStore.register(this.messagesUniqueRef, "MESSAGE", this.__incomingMessage);
     }
 
     componentWillUnmount() {
-        EventWebSocketStore.unRegister(this.messagesUniqueRef);
+        WebSocketStore.unRegister(this.messagesUniqueRef);
     };
 
     componentWillReceiveProps(nextProps) {

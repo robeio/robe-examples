@@ -1,7 +1,7 @@
 import React from "react";
 import ShallowComponent from "robe-react-commons/lib/components/ShallowComponent";
-import EventWebSocketStore from "libs/stores/EventWebSocketStore";
-import Card from "libs/card/Card";
+import WebSocketStore from "stores/WebSocketStore";
+import Card from "app/card/Card";
 import AjaxRequest from "robe-react-commons/lib/connections/AjaxRequest";
 import Col from "react-bootstrap/lib/Col";
 import Badge from "react-bootstrap/lib/Badge";
@@ -206,11 +206,11 @@ export default class Users extends ShallowComponent {
             }.bind(this));
 
 
-        EventWebSocketStore.register(this.messagesUniqueRef, "MESSAGE", this.__incomingMessage);
+        WebSocketStore.register(this.messagesUniqueRef, "MESSAGE", this.__incomingMessage);
 
     }
 
     componentWillUnmount() {
-        EventWebSocketStore.unRegister(this.messagesUniqueRef);
+        WebSocketStore.unRegister(this.messagesUniqueRef);
     };
 }
