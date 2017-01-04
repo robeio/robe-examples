@@ -8,9 +8,6 @@ export default class Welcome extends ShallowComponent {
             <Card header="Robe Chat Sample">
                 <p>Welcome to the Robe-Chat.</p>
                 <br/>
-                <h4>For More...</h4>
-                <p><a href="https://github.com/robeio">Robe</a></p>
-                <p><a href="http://robeio.github.io/robe-react-ui/">Robe React Ui</a></p>
             </Card>
         );
     }
