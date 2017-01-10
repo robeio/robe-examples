@@ -1,5 +1,6 @@
 import React from "react";
 import ShallowComponent from "robe-react-commons/lib/components/ShallowComponent";
+import Application from "robe-react-commons/lib/application/Application";
 import AjaxRequest from "robe-react-commons/lib/connections/AjaxRequest";
 import WebSocketStore from "stores/WebSocketStore";
 import TextInput from "robe-react-ui/lib/inputs/TextInput";
@@ -46,7 +47,7 @@ export default class Chat extends ShallowComponent {
                     value={this.state.message}
                     style={{borderTopLeftRadius:0,borderTopRightRadius:0,background:"#fafafa"}}
                     name="message"
-                    placeholder="Mesaj..."
+                    placeholder={Application.i18n("chat").placeHolder}
                     onKeyPress={this.__onKeyPress}
                     inputGroupRight={
                         <InputGroup.Button style={{borderTopRightRadius:0}}>

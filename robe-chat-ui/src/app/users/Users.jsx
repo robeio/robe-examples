@@ -1,5 +1,6 @@
 import React from "react";
 import ShallowComponent from "robe-react-commons/lib/components/ShallowComponent";
+import Application from "robe-react-commons/lib/application/Application";
 import WebSocketStore from "stores/WebSocketStore";
 import Card from "app/card/Card";
 import AjaxRequest from "robe-react-commons/lib/connections/AjaxRequest";
@@ -36,11 +37,11 @@ export default class Users extends ShallowComponent {
 
     render():Object {
         return (
-            <Card header="Users" style={{width:243,paddingBottom:25}}>
+            <Card header={Application.i18n("user").header} style={{width:243,paddingBottom:25}}>
                 <TextInput
                     value={this.state.search}
                     name="search"
-                    placeholder="Search..."
+                    placeholder={Application.i18n("user").placeHolder}
                     onChange={this.__handleChange}/>
                 {this.__renderUserList()}
             </Card>
