@@ -1,0 +1,13 @@
+{
+  "user": {
+    "header": "Users",
+    "placeHolder": "Search..."
+  },
+  "chat": {
+    "placeHolder": "Message..."
+  },
+  "welcome": {
+    "header": "Robe Chat Sample",
+    "description": "Welcome to the Robe-Chat."
+  }
+}
