@@ -13,9 +13,19 @@
 
 #### 2. Program Arguments
 
+##### 2.1 You must run it at least once to create the table and default data.
+
 ```
- server robe.yml (update table)
+ init   init.yml
 ```
+
+You can also enter 123123 as the default password in case of consol login password.
+
+##### 2.2 Start the application
+```
+ server robe.yml
+```
+
 
 #### 3. Working Directory
 
